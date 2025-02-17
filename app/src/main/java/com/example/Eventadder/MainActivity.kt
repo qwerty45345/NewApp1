@@ -1,4 +1,4 @@
-package com.example.emir
+package com.example.Eventadder
 
 import android.content.DialogInterface
 import android.content.Intent
@@ -13,13 +13,12 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.squareup.picasso.Picasso
 import com.bumptech.glide.Glide
 
 class MainActivity : AppCompatActivity() {
     private lateinit var mainRecyclerView: RecyclerView
     private lateinit var mainAdapter: MainAdapter
-    private val categories = arrayOf("Спорт", "Кино", "Музыка")
+    private val categories = arrayOf("Sport", "Movie", "Music")
     private val events: MutableMap<String, MutableList<EventItem>> = mutableMapOf()
     private val PICK_IMAGE_REQUEST = 1
     private var selectedImageUri: Uri? = null
@@ -48,13 +47,13 @@ class MainActivity : AppCompatActivity() {
         val dialogView = layoutInflater.inflate(R.layout.dialog_add_event, null)
         val alertDialogBuilder = AlertDialog.Builder(this)
         alertDialogBuilder.setView(dialogView)
-        alertDialogBuilder.setTitle("Добавить событие")
+        alertDialogBuilder.setTitle("Add event")
 
         val eventNameEditText = dialogView.findViewById<EditText>(R.id.eventNameEditText)
         val categorySpinner = dialogView.findViewById<Spinner>(R.id.categorySpinner)
         val addImageButton = dialogView.findViewById<Button>(R.id.addImageButton)
 
-        val categories = arrayOf("Спорт", "Кино", "Музыка")
+        val categories = arrayOf("Sport", "Movie", "Music")
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, categories)
         categorySpinner.adapter = adapter
 
@@ -64,7 +63,7 @@ class MainActivity : AppCompatActivity() {
             openGallery()
         }
 
-        alertDialogBuilder.setPositiveButton("Добавить") { dialog: DialogInterface, which: Int ->
+        alertDialogBuilder.setPositiveButton("Add") { dialog: DialogInterface, which: Int ->
             val eventName = eventNameEditText.text.toString()
             val category = categorySpinner.selectedItem.toString()
 
@@ -82,7 +81,7 @@ class MainActivity : AppCompatActivity() {
             dialog.dismiss()
         }
 
-        alertDialogBuilder.setNegativeButton("Отмена") { dialog: DialogInterface, which: Int ->
+        alertDialogBuilder.setNegativeButton("Cancel") { dialog: DialogInterface, which: Int ->
             dialog.dismiss()
         }
 
@@ -99,7 +98,7 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null) {
             selectedImageUri = data.data
-            // Обновить изображение в списке мероприятий
+            // Aktualisieren des Bildes in der Ereignisliste
             mainAdapter.notifyDataSetChanged()
         }
     }
@@ -180,15 +179,15 @@ class MainActivity : AppCompatActivity() {
                 deleteButton.setOnClickListener {
                     val eventPosition = adapterPosition
                     val event = events[eventPosition]
-                    deleteEventFromDatabase(event) // Удаление из базы данных
-                    events.removeAt(eventPosition) // Удаление из списка
+                    deleteEventFromDatabase(event) // Löschung aus der Datenbank
+                    events.removeAt(eventPosition) // Löschung aus der Liste
                     notifyItemRemoved(eventPosition)
                     notifyDataSetChanged()
                 }
             }
         }
 
-        // Остальной код адаптера
+        // Der Rest des Adaptercodes
 
         private fun deleteEventFromDatabase(event: EventItem) {
             val db = dbHelper.writableDatabase
@@ -217,7 +216,7 @@ class MainActivity : AppCompatActivity() {
             }
 
                 holder.itemView.setOnClickListener {
-                    // Действия при нажатии на событие
+                    // Aktionen beim Drücken des Ereignisses
                 }
             }
 

@@ -1,4 +1,4 @@
-package com.example.emir
+package com.example.Eventadder
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -17,7 +17,7 @@ import org.junit.Assert.*
 class ExampleInstrumentedTest {
     @Test
     fun useAppContext() {
-        // Context of the app under test.
+        // Kontext der zu testenden Anwendung.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         assertEquals("com.example.emir", appContext.packageName)
     }

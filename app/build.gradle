@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.emir'
+    namespace 'com.example.Eventadder'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.emir"
+        applicationId "com.example.Eventadder"
         minSdk 24
         targetSdk 33
         versionCode 1

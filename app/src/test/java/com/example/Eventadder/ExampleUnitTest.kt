@@ -1,4 +1,4 @@
-package com.example.emir
+package com.example.Eventadder
 
 import org.junit.Test
 
